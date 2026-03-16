@@ -66,7 +66,7 @@
         <TrafficLight status={curr_cycle[1]} />
     </div>
     <div></div>
-    <div class="cell">
+    <div class="cell south">
         <TrafficLight style="left-turn" status={curr_cycle[3]} />
         <TrafficLight status={curr_cycle[3]} />
         <TrafficLight status={curr_cycle[3]} />
@@ -89,7 +89,8 @@
         align-items: center;
     }
 
-    .west{ rotate: 270deg }
     .east{ rotate: 90deg }
+    .south{ rotate: 180deg }
+    .west{ rotate: 270deg }
 
 </style>

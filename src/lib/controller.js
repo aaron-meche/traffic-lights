@@ -37,6 +37,16 @@ export class Controller {
 
     // Action Functions
 
+    #transition() {
+        let transitionCycle = ""
+        for (let i = 0; i < this.cycle.length; i++) {
+            if (this.cycle[i] > 0) transitionCycle += "9"
+            else transitionCycle += "0"
+        }
+        this.cycle = transitionCycle
+        this.#notify()
+    }
+
     #goCycle(index) {
         this.#index = index
         this.cycle = this.#cycles[index]
@@ -44,8 +54,14 @@ export class Controller {
     }
 
     nextCycle() {
-        this.#index++;
-        this.#index %= this.#cycles.length
-        this.#goCycle(this.#index)
+        this.#transition()
+        setTimeout(() => {
+            this.cycle = "0000"
+            setTimeout(() => {
+                this.#index++;
+                this.#index %= this.#cycles.length
+                this.#goCycle(this.#index)
+            }, 500)
+        }, 2000)
     }
 }
