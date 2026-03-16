@@ -5,20 +5,41 @@
 
 
 export class Controller {
-    constructor(cycles = []) {
-        this.cycles = cycles
-        this.index = 0
+    #lights = {}
+    #cycles = []
+    #index = 0
+    #subscribers = new Set()
+    cycle = []
+
+    // Handle Subscriptions
+
+    subscribe(callback) {
+        this.#subscribers.add(callback)
+        callback([...this.cycle])
+        return () => this.#subscribers.delete(callback)
+    }
+
+    #notify() {
+        for (const callback of this.#subscribers) callback([...this.cycle])
+    }
+
+    // Controller Configuration
+
+    setLights(lights) {
+        this.#lights = lights
+        this.#notify()
     }
 
     setCycles(cycles) {
-        this.cycles = cycles
+        this.#cycles = cycles
+        this.#notify()
     }
 
-    start() {
+    // Action Functions
 
-    }
-
-    subscribe(callback) {
-        callback(this.cycles[this.index])
+    goCycle(index) {
+        this.index = index
+        this.cycle = this.#cycles[index]
+        this.#notify()
     }
 }
