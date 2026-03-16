@@ -8,6 +8,7 @@ export class Controller {
     #lights = {}
     #cycles = []
     #index = 0
+    #count = 0
     #subscribers = new Set()
     cycle = []
 
@@ -27,19 +28,24 @@ export class Controller {
 
     setLights(lights) {
         this.#lights = lights
-        this.#notify()
     }
 
     setCycles(cycles) {
         this.#cycles = cycles
-        this.#notify()
+        this.cycle = cycles[this.#index]
     }
 
     // Action Functions
 
-    goCycle(index) {
-        this.index = index
+    #goCycle(index) {
+        this.#index = index
         this.cycle = this.#cycles[index]
         this.#notify()
+    }
+
+    nextCycle() {
+        this.#index++;
+        this.#index %= this.#cycles.length
+        this.#goCycle(this.#index)
     }
 }
