@@ -57,11 +57,12 @@ export class Controller {
         this.#transition()
         setTimeout(() => {
             this.cycle = "0000"
-            setTimeout(() => {
-                this.#index++;
-                this.#index %= this.#cycles.length
-                this.#goCycle(this.#index)
-            }, 500)
+            this.#notify()
         }, 2000)
+        setTimeout(() => {
+            this.#index++;
+            this.#index %= this.#cycles.length
+            this.#goCycle(this.#index)
+        }, 3000)
     }
 }
