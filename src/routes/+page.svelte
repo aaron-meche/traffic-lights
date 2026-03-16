@@ -27,7 +27,9 @@
         "PF S RightTurn",
     ]
     let cycles = [
+        "7711",
         "8800",
+        "1177",
         "0088",
     ]
     // 8800
@@ -50,26 +52,28 @@
         <TrafficLight style="left-turn" status={curr_cycle[2]} />
         <TrafficLight status={curr_cycle[2]} />
         <TrafficLight status={curr_cycle[2]} />
+        <TrafficLight style="right-turn" status={curr_cycle[2]} />
     </div>
     <div></div>
     <div class="cell west">
         <TrafficLight style="left-turn" status={curr_cycle[0]} />
         <TrafficLight status={curr_cycle[0]} />
         <TrafficLight status={curr_cycle[0]} />
-        <TrafficLight status={curr_cycle[0]} />
+        <TrafficLight style="right-turn" status={curr_cycle[0]} />
     </div>
-    <div></div>
+    <div class="center">{curr_cycle.join("")}</div>
     <div class="cell east">
         <TrafficLight style="left-turn" status={curr_cycle[1]} />
         <TrafficLight status={curr_cycle[1]} />
         <TrafficLight status={curr_cycle[1]} />
-        <TrafficLight status={curr_cycle[1]} />
+        <TrafficLight style="right-turn" status={curr_cycle[1]} />
     </div>
     <div></div>
     <div class="cell south">
         <TrafficLight style="left-turn" status={curr_cycle[3]} />
         <TrafficLight status={curr_cycle[3]} />
         <TrafficLight status={curr_cycle[3]} />
+        <TrafficLight style="right-turn" status={curr_cycle[3]} />
     </div>
     <div></div>
 </div>
@@ -92,5 +96,12 @@
     .east{ rotate: 90deg }
     .south{ rotate: 180deg }
     .west{ rotate: 270deg }
-
+    
+    .center{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        font-weight: 700;
+    }
 </style>

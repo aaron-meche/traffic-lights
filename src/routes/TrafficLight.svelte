@@ -17,18 +17,21 @@
 
 <div class="device">
     {#if style == "left-turn"}
-    <div class="color ar red-arrow {status >= 0 && status <= 3 ? "active" : ""}"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="color ar red-arrow {status >= 0 && status <= 3 ? "active" : ""}"><i class="fa-solid fa-arrow-left"></i></div>
     {:else}
-    <div class="color red {status == 0 ? "active" : ""}"></div>
+        <div class="color red {status == 0 || status == 7 ? "active" : ""}"></div>
     {/if}
 
     <div class="color yellow {status == 9 ? "active" : ""}"></div>
 
     {#if style == "left-turn"}
-    <div class="color {flickerBool ? "on": "off"} ar yellow-arrow {status == 8 ? "active" : ""}"><i class="fa-solid fa-arrow-left"></i></div>
-    <div class="color ar green-arrow {status >= 4 && status <= 7 ? "active" : ""}"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="color {flickerBool ? "on": "off"} ar yellow-arrow {status == 8 ? "active" : ""}"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="color ar green-arrow {status >= 4 && status <= 7 ? "active" : ""}"><i class="fa-solid fa-arrow-left"></i></div>
+    {:else if style == "right-turn"}
+        <div class="color green {status == 8 ? "active" : ""}"></div>
+        <div class="color ar green-arrow {status == 1 ? "active" : ""}"><i class="fa-solid fa-arrow-right"></i></div>
     {:else}
-    <div class="color green {status == 8 ? "active" : ""}"></div>
+        <div class="color green {status == 8 ? "active" : ""}"></div>
     {/if}
 
 </div>
